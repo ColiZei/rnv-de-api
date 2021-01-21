@@ -1,0 +1,27 @@
+# Install VSCode Rest Client Extension to use this file
+# Default
+GET http://localhost:3000/
+###
+
+# LOCATION ENDPOINTS
+GET http://localhost:3000/locations
+###
+GET http://localhost:3000/location/2
+### Add Location
+POST http://localhost:3000/location
+content-type: application/json
+
+{
+    "name": "I am a Location"
+}
+
+### Update Location
+PUT http://localhost:3000/location/3
+content-type: application/json
+
+{
+    "name": "I am a Location"
+}
+
+### Delete
+DELETE http://localhost:3000/location/3
