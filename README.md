@@ -1,15 +1,43 @@
 # REST API RNV MAP
 
-## Install:
+# Install:
+
+## Install node dependencies
 
 ```
 npm install
+```
+
+## Build docker image
+
+```
+docker-compose up --build
+```
+
+# Contribute
+
+## Start docker:
+
+```
+docker-compose up -d
 ```
 
 ## Start in Dev mode:
 
 ```
 npm run dev
+```
+
+## Stop docker:
+
+```
+docker-compose down
+```
+
+## Access adminer
+
+```
+http://localhost:8080
 ```
 
 # Endpoint examples:
