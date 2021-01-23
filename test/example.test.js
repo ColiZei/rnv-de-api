@@ -1,5 +1,3 @@
-// // const { expect } = chai;
-
 // const { expect } = require('chai');
 
 // describe('Test Description', function () {
