@@ -29,7 +29,6 @@ exports.getLocation = (req, res) => {
   const locationId = parseInt(req.params.id);
   const location = locations.find(l => l.id === locationId);
 
-  console.log(location);
   if (!location) {
     return res.status(204).send({ error: 'Not Found' });
   }
