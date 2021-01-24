@@ -8,6 +8,10 @@
 npm install
 ```
 
+## Set environment variables
+
+Copy .env.example to .env and set the environment variables.
+
 ## Build docker image
 
 ```
