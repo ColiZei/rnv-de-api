@@ -11,10 +11,10 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: this_is_pw
-      MYSQL_DATABASE: rnv-api
-      MYSQL_USER: rnv-api
-      MYSQL_PASSWORD: this_is_pw
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_HOST}
 
   adminer:
     image: adminer
