@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha",
     "start": "node app.js",
-    "dev": "NODE_ENV=dev nodemon app.js"
+    "dev": "nodemon app.js"
   },
   "author": "Sebastian Collazo-Quaas",
   "license": "ISC",
