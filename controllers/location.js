@@ -24,6 +24,10 @@ exports.addLocation = async (req, res, next) => {
     description: req.body.description,
     permanentlyClosed: req.body.permanentlyClosed,
     openingHours: req.body.openingHours,
+    street: req.body.street,
+    city: req.body.city,
+    zipcode: req.body.zipcode,
+    website: req.body.website,
   };
 
   try {
@@ -66,6 +70,10 @@ exports.updateLocation = async (req, res, next) => {
     location.description = req.body.description;
     location.permanentlyClosed = req.body.permanentlyClosed;
     location.openingHours = req.body.openingHours;
+    location.street = req.body.street;
+    location.city = req.body.city;
+    location.zipcode = req.body.zipcode;
+    location.website = req.body.website;
 
     const result = await location.save();
 
