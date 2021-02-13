@@ -4,7 +4,6 @@ const cors = require('cors');
 const helmet = require('helmet');
 const logger = require('morgan');
 
-// const { sequelize } = require('./util/database');
 const locationRoutes = require('./routes/location');
 
 const app = express();
@@ -29,16 +28,6 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-
-// try {
-//   sequelize.sync();
-//   // sequelize.sync({ force: true });
-//   app.listen(PORT, () => {
-//     console.log(`Listen to port ${PORT}...`);
-//   });
-// } catch (err) {
-//   throw err;
-// }
 
 app.listen(PORT, () => {
   console.log(`Listen to port ${PORT}...`);
