@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
       openingHours: DataTypes.STRING,
       street: DataTypes.STRING,
       city: DataTypes.STRING,
-      zipcode: DataTypes.STRING,
+      zipcode: DataTypes.INTEGER,
       website: DataTypes.STRING,
     },
     {
