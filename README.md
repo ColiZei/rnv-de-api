@@ -12,18 +12,19 @@ npm install
 
 Copy .env.example to .env and set the environment variables.
 
-## Build docker image
-
-```
-docker-compose up --build
-```
-
 # Contribute
 
 ## Start docker:
 
 ```
 docker-compose up -d
+```
+
+## Initialise Database and add dummy data:
+
+```
+npx sequelize-cli db:migrate
+npx sequelize-cli db:seed:all
 ```
 
 ## Start in Dev mode:
@@ -63,7 +64,8 @@ GET /location/2
 ```
 POST /location/
 {
-  name: "I am a Location!"
+  name: "I am a Location!",
+  ...
 }
 ```
 
@@ -72,7 +74,8 @@ POST /location/
 ```
 PUT /location/1
 {
-  name: "Change my name!"
+  name: "Change my name!",
+  ...
 }
 ```
 

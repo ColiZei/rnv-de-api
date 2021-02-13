@@ -8,10 +8,10 @@ router.get('/locations', locationController.getLocations);
 
 router.post('/location', locationController.addLocation);
 
-router.get('/location/:id', locationController.getLocation);
+router.get('/location/:locationId', locationController.getLocation);
 
-router.put('/location/:id', locationController.updateLocation);
+router.put('/location/:locationId', locationController.updateLocation);
 
-router.delete('/location/:id', locationController.deleteLocation);
+router.delete('/location/:locationId', locationController.deleteLocation);
 
 module.exports = router;

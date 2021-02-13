@@ -1,69 +1,102 @@
-// Dummy Data
-const locations = [
-  { id: 1, name: 'First Location' },
-  { id: 2, name: 'Second Location' },
-  { id: 3, name: 'Third Location' },
-  { id: 4, name: 'Fourth Location' },
-];
+const { Location } = require('../models');
+const { error } = require('../util/error');
 
-exports.getLocations = (req, res) => {
-  if (locations.length == 0) {
-    return res.status(204).send({ error: 'Not Found' });
+exports.getLocations = async (req, res, next) => {
+  try {
+    const allLocations = await Location.findAll();
+    if (!allLocations) {
+      throw error(404, 'Could not find post.');
+    }
+
+    res.send({ allLocations });
+  } catch (err) {
+    next(err);
   }
-  res.send({ locations });
 };
 
-exports.addLocation = (req, res) => {
-  // TODO: Validate!
-  const location = {
-    id: locations.length + 1,
+exports.addLocation = async (req, res, next) => {
+  const newLocation = {
     name: req.body.name,
+    type: req.body.type,
+    category: req.body.category,
+    cLong: req.body.cLong,
+    cLat: req.body.cLat,
+    description: req.body.description,
+    permanentlyClosed: req.body.permanentlyClosed,
+    openingHours: req.body.openingHours,
+    street: req.body.street,
+    city: req.body.city,
+    zipcode: req.body.zipcode,
+    website: req.body.website,
   };
 
-  locations.push(location);
-
-  res.status(201).send(location);
+  try {
+    const location = await Location.create(newLocation);
+    res.status(201).send(location);
+  } catch (err) {
+    next(err);
+  }
 };
 
-exports.getLocation = (req, res) => {
-  const locationId = parseInt(req.params.id);
-  const location = locations.find(l => l.id === locationId);
+exports.getLocation = async (req, res, next) => {
+  const { locationId } = req.params;
 
-  if (!location) {
-    return res.status(204).send({ error: 'Not Found' });
+  try {
+    const location = await Location.findByPk(locationId);
+    if (!location) {
+      throw error(204);
+    }
+
+    res.send({ location });
+  } catch (err) {
+    return next(err);
   }
-
-  res.send({ location });
 };
 
-exports.updateLocation = (req, res) => {
-  const locationId = parseInt(req.params.id);
-  const locationIndex = locations.findIndex(l => l.id === locationId);
-  const location = locations[locationIndex];
+exports.updateLocation = async (req, res, next) => {
+  const { locationId } = req.params;
 
-  if (!location) {
-    return res.status(204).send({ error: 'Not Found' });
+  try {
+    const location = await Location.findByPk(locationId);
+    if (!location) {
+      throw error(204);
+    }
+
+    location.name = req.body.name;
+    location.type = req.body.type;
+    location.category = req.body.category;
+    location.cLong = req.body.cLong;
+    location.cLat = req.body.cLat;
+    location.description = req.body.description;
+    location.permanentlyClosed = req.body.permanentlyClosed;
+    location.openingHours = req.body.openingHours;
+    location.street = req.body.street;
+    location.city = req.body.city;
+    location.zipcode = req.body.zipcode;
+    location.website = req.body.website;
+
+    const result = await location.save();
+
+    res.send({ message: 'Location updated!', location: result });
+  } catch (err) {
+    next(err);
   }
-
-  // TODO: Validate!
-  const updatedName = req.body.name;
-
-  location.name = updatedName;
-
-  locations[locationIndex] = location;
-
-  res.status(200).send(location);
 };
 
-exports.deleteLocation = (req, res) => {
-  const locationId = parseInt(req.params.id);
-  const location = locations.find(l => l.id === locationId);
-  if (!location) {
-    return res.status(204).send({ error: 'Not Found' });
+exports.deleteLocation = async (req, res, next) => {
+  const { locationId } = req.params;
+
+  try {
+    const location = await Location.findByPk(locationId);
+    if (!location) {
+      throw error(204);
+    }
+
+    const deleted = await Location.destroy({ where: { id: locationId } });
+    if (deleted) {
+      res.send({ message: 'Location deleted!' });
+    }
+  } catch (err) {
+    return next(err);
   }
-
-  const index = locations.indexOf(location);
-  locations.splice(index, 1);
-
-  res.send(location);
 };
