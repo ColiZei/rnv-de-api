@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Location extends Model {
     /**
@@ -12,19 +10,26 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  Location.init({
-    name: DataTypes.STRING,
-    type: DataTypes.ENUM('vegan', 'veggie', 'omni'),
-    category: DataTypes.STRING,
-    cLong: DataTypes.DECIMAL,
-    cLat: DataTypes.DECIMAL,
-    description: DataTypes.TEXT,
-    permanentlyClosed: DataTypes.BOOLEAN,
-    openingHours: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Location',
-  });
+  }
+  Location.init(
+    {
+      name: DataTypes.STRING,
+      type: DataTypes.ENUM('vegan', 'veggie', 'omni'),
+      category: DataTypes.STRING,
+      cLong: DataTypes.DECIMAL,
+      cLat: DataTypes.DECIMAL,
+      description: DataTypes.TEXT,
+      permanentlyClosed: DataTypes.BOOLEAN,
+      openingHours: DataTypes.STRING,
+      street: DataTypes.STRING,
+      city: DataTypes.STRING,
+      zipcode: DataTypes.STRING,
+      website: DataTypes.STRING,
+    },
+    {
+      sequelize,
+      modelName: 'Location',
+    }
+  );
   return Location;
 };
