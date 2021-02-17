@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const { Location } = require('../models');
 const { error } = require('../util/error');
 
@@ -15,6 +16,11 @@ exports.getLocations = async (req, res, next) => {
 };
 
 exports.addLocation = async (req, res, next) => {
+  const validationErrors = validationResult(req);
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).send({ errors: validationErrors.array() });
+  }
+
   const newLocation = {
     name: req.body.name,
     type: req.body.type,
@@ -49,11 +55,16 @@ exports.getLocation = async (req, res, next) => {
 
     res.send({ location });
   } catch (err) {
-    return next(err);
+    next(err);
   }
 };
 
 exports.updateLocation = async (req, res, next) => {
+  const validationErrors = validationResult(req);
+  if (!validationErrors.isEmpty()) {
+    return res.status(400).send({ errors: validationErrors.array() });
+  }
+
   const { locationId } = req.params;
 
   try {
@@ -97,6 +108,6 @@ exports.deleteLocation = async (req, res, next) => {
       res.send({ message: 'Location deleted!' });
     }
   } catch (err) {
-    return next(err);
+    next(err);
   }
 };
