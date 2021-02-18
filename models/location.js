@@ -14,8 +14,8 @@ module.exports = (sequelize, DataTypes) => {
   Location.init(
     {
       name: DataTypes.STRING,
-      type: DataTypes.ENUM('vegan', 'veggie', 'omni'),
-      category: DataTypes.STRING,
+      group: DataTypes.ENUM('vegan', 'veggie', 'omni'),
+      type: DataTypes.STRING,
       cLong: DataTypes.DECIMAL,
       cLat: DataTypes.DECIMAL,
       description: DataTypes.TEXT,
