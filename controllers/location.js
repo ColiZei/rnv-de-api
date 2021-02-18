@@ -23,8 +23,8 @@ exports.addLocation = async (req, res, next) => {
 
   const newLocation = {
     name: req.body.name,
+    group: req.body.group,
     type: req.body.type,
-    category: req.body.category,
     cLong: req.body.cLong,
     cLat: req.body.cLat,
     description: req.body.description,
@@ -74,8 +74,8 @@ exports.updateLocation = async (req, res, next) => {
     }
 
     location.name = req.body.name;
+    location.group = req.body.group;
     location.type = req.body.type;
-    location.category = req.body.category;
     location.cLong = req.body.cLong;
     location.cLat = req.body.cLat;
     location.description = req.body.description;

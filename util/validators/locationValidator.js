@@ -4,11 +4,11 @@ const { Location } = require('../../models');
 
 exports.validate = method => {
   const validators = [
-    body('type')
+    body('group')
       .trim()
       .isLength({ min: 4 })
       .withMessage('must be at least 4 chars long'),
-    body('category')
+    body('type')
       .trim()
       .isLength({ min: 3 })
       .withMessage('must be at least 3 chars long'),
